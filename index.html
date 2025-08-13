@@ -1,0 +1,444 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Email Marketing Portfolio — Dipon</title>
+  <meta name="description" content="Portfolio for an email marketer — sample campaigns, workflows, metrics and contact." />
+  <style>
+        .gallery {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+      gap: 1rem;
+      margin-bottom: 2rem;
+    }
+    
+    .gallery-item {
+      border-radius: 12px;
+      overflow: hidden;
+      position: relative;
+      aspect-ratio: 16/9;
+      background: linear-gradient(180deg,#07172b,#051029);
+    }
+    
+    .gallery-item img, 
+    .gallery-item video {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: transform 0.3s ease;
+    }
+    
+    .gallery-item:hover img,
+    .gallery-item:hover video {
+      transform: scale(1.03);
+    }
+    
+    .gallery-caption {
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      background: rgba(0,0,0,0.7);
+      padding: 0.75rem;
+      font-size: 0.9rem;
+    }
+    
+    .video-icon {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      width: 40px;
+      height: 40px;
+      background: rgba(255,255,255,0.8);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    
+    .video-icon::after {
+      content: "";
+      width: 0;
+      height: 0;
+      border-top: 10px solid transparent;
+      border-bottom: 10px solid transparent;
+      border-left: 16px solid var(--accent);
+      margin-left: 3px;
+    }
+    :root{
+      --bg:#0f1724;
+      --card:#0b1220;
+      --muted:#9aa4b2;
+      --accent:#60a5fa;
+      --glass: rgba(255,255,255,0.03);
+      --radius:16px;
+      --max:1100px;
+      --gap:1.25rem;
+      font-family: Inter, ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial;
+    }
+    *{box-sizing:border-box}
+    html,body{height:100%;}
+    body{
+      margin:0;
+      background:linear-gradient(180deg,#071025 0%, #071026 60%);
+      color:#e6eef8;
+      -webkit-font-smoothing:antialiased;
+      -moz-osx-font-smoothing:grayscale;
+      padding:2rem 1rem;
+      display:flex;justify-content:center;
+    }
+    .wrap{width:100%;max-width:var(--max);}
+
+    header{
+      display:flex;align-items:center;justify-content:space-between;gap:1rem;margin-bottom:1.5rem;
+    }
+    .brand{display:flex;gap:1rem;align-items:center}
+    .logo{width:56px;height:56px;border-radius:12px;background:linear-gradient(135deg,var(--accent),#7dd3fc);display:flex;align-items:center;justify-content:center;color:#02203a;font-weight:700;font-size:1.25rem}
+    h1{margin:0;font-size:1.25rem}
+    p.lead{margin:0;color:var(--muted);font-size:0.95rem}
+
+    .grid{display:grid;grid-template-columns:1fr 360px;gap:var(--gap);align-items:start}
+    @media(max-width:980px){.grid{grid-template-columns:1fr}}
+
+    /* Main card */
+    .card{background:var(--card);border-radius:var(--radius);padding:1.25rem;box-shadow:0 6px 20px rgba(2,6,23,0.6);}
+
+    .about{display:flex;gap:1rem;align-items:center}
+    .avatar{width:90px;height:90px;border-radius:14px;background:linear-gradient(180deg,#fff2 0,#fff0 40%);display:flex;align-items:center;justify-content:center;font-weight:700;color:#a8d5ff;overflow:hidden}
+    .avatar img{width:100%;height:100%;object-fit:cover}
+    .skills{display:flex;gap:0.5rem;flex-wrap:wrap;margin-top:0.75rem}
+    .chip{background:var(--glass);padding:0.35rem 0.6rem;border-radius:999px;font-size:0.85rem;color:var(--muted)}
+
+    /* portfolio list */
+    .section{margin-top:1.25rem}
+    .section h2{margin:0 0 0.75rem 0;font-size:1.05rem}
+
+    .projects{display:grid;grid-template-columns:repeat(2,1fr);gap:1rem}
+    @media(max-width:760px){.projects{grid-template-columns:1fr}}
+
+    .project{background:linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01));padding:1rem;border-radius:12px}
+    .project .meta{display:flex;justify-content:space-between;align-items:center;margin-bottom:0.6rem}
+    .project h3{margin:0;font-size:0.98rem}
+    .project p{margin:0;color:var(--muted);font-size:0.88rem}
+
+    .screenshot{height:160px;border-radius:8px;background:linear-gradient(180deg,#07172b,#051029);display:flex;align-items:center;justify-content:center;color:var(--muted);margin-top:0.65rem;padding:0.75rem;font-size:0.85rem}
+
+    .metrics{display:flex;gap:0.5rem;margin-top:0.7rem}
+    .metric{flex:1;background:rgba(255,255,255,0.02);padding:0.55rem;border-radius:10px;text-align:center}
+    .metric .num{font-weight:700;font-size:1.05rem}
+    .metric .lbl{font-size:0.75rem;color:var(--muted)}
+
+    /* right column */
+    .side{position:sticky;top:1.5rem}
+    .contact-card{display:flex;flex-direction:column;gap:0.5rem}
+    .btn{display:inline-block;padding:0.6rem 0.85rem;border-radius:10px;background:linear-gradient(90deg,var(--accent),#7dd3fc);color:#02203a;font-weight:700;text-decoration:none;text-align:center}
+    .btn:hover{opacity:0.9}
+
+    .workflow{margin-top:1rem;padding:0.9rem;border-radius:12px;background:linear-gradient(180deg, rgba(255,255,255,0.02), transparent)}
+    .workflow svg{width:100%;height:auto}
+
+    footer{margin-top:1.25rem;color:var(--muted);font-size:0.9rem;text-align:center}
+
+    /* contact form */
+    form{display:flex;flex-direction:column;gap:0.6rem}
+    input,textarea{background:transparent;border:1px solid rgba(255,255,255,0.04);padding:0.6rem;border-radius:10px;color:inherit;font-size:0.95rem}
+    textarea{min-height:90px}
+
+    /* small helpers */
+    .muted{color:var(--muted)}
+    .grid-2{display:grid;grid-template-columns:1fr 1fr;gap:0.6rem}
+    @media(max-width:760px){.grid-2{grid-template-columns:1fr}}
+
+  </style>
+</head>
+<body>
+  <div class="wrap">
+    <header>
+      <div class="brand">
+        <div class="logo">DM</div>
+        <div>
+          <h1>Dipon — Email Marketer </h1>
+          <p class="lead">Welcome series · Automation · Promotional campaigns · Copy & templates</p>
+        </div>
+      </div>
+      <nav class="muted">GitHub · LinkedIn · Resume</nav>
+    </header>
+
+    <div class="grid">
+      <main>
+        <div class="card">
+          <div class="about">
+            <div class="avatar">
+              <!-- Replace with your actual profile image -->
+              <img src="https://via.placeholder.com/150" alt="Dipon's profile picture">
+            </div>
+            <div>
+              <p style="margin:0 0 6px 0;font-weight:600">Hi — I'm Dipon</p>
+              <p class="muted" style="max-width:60ch">I create strategically-driven email campaigns for e-commerce and small brands. These are practice projects — clearly labeled — that demonstrate strategy, copy, and visual layout.</p>
+              <div class="skills">
+                <div class="chip">Klaviyo</div>
+                <div class="chip">Mailchimp</div>
+                <div class="chip">HTML/CSS</div>
+                <div class="chip">Copywriting</div>
+                <div class="chip">Figma</div>
+                <div class="chip">A/B testing</div>
+              </div>
+            </div>
+          </div>
+        <section class="section">
+          <h2>My Work Gallery</h2>
+          <div class="gallery">
+            <!-- Image Example 1 -->
+            <div class="gallery-item">
+              <img src="https://images.unsplash.com/photo-1499951360447-b19be8fe80f5?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=800&q=80" alt="Email campaign screenshot">
+              <div class="gallery-caption">Welcome email for EcoSip</div>
+            </div>
+            
+            <!-- Video Example 1 -->
+            <div class="gallery-item">
+              <video poster="https://images.unsplash.com/photo-1517245386807-bb43f82c33c4?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=800&q=80">
+                <source src="your-video-file.mp4" type="video/mp4">
+              </video>
+              <div class="gallery-caption">Abandoned cart flow demo</div>
+              <div class="video-icon"></div>
+            </div>
+            
+            <!-- Image Example 2 -->
+            <div class="gallery-item">
+              <img src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=800&q=80" alt="Holiday campaign">
+              <div class="gallery-caption">Holiday promotional email</div>
+            </div>
+            
+            <!-- Video Example 2 -->
+            <div class="gallery-item">
+              <video poster="https://images.unsplash.com/photo-1556740738-b6a63e27c4df?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=800&q=80">
+                <source src="your-video-file-2.mp4" type="video/mp4">
+              </video>
+              <div class="gallery-caption">Automation workflow</div>
+              <div class="video-icon"></div>
+            </div>
+          </div>
+        </section>
+
+        <section class="section">
+          <h2>Featured Case Studies (Mock)</h2>
+          <!-- Rest of your existing content -->
+        </section>
+
+  <!-- Rest of your HTML remains the same -->
+</body>
+</html>
+          <section class="section">
+            <h2>Featured Case Studies (Mock)</h2>
+            <div class="projects">
+
+              <!-- Project 1 -->
+              <article class="project">
+                <div class="meta">
+                  <div>
+                    <h3>Welcome Series — EcoSip (Fictional)</h3>
+                    <p class="muted">Goal: Convert new subscribers → first purchase</p>
+                  </div>
+                  <div class="muted">Automation · 3 emails</div>
+                </div>
+                <div class="screenshot">
+                  <!-- simple mock email screenshot using inline SVG -->
+                  <svg width="100%" height="100%" viewBox="0 0 400 200" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
+                    <rect x="0" y="0" width="400" height="200" rx="8" fill="#021425" />
+                    <rect x="16" y="16" width="120" height="24" rx="4" fill="#ffffff22" />
+                    <rect x="16" y="52" width="360" height="96" rx="6" fill="#ffffff08" />
+                    <text x="30" y="40" fill="#9fbfe8" font-size="12">Subject: Welcome to EcoSip — Here's 10% off</text>
+                    <text x="30" y="84" fill="#cfdfea" font-size="11">Hi [Name], thanks for joining. We source sustainable coffee...</text>
+                  </svg>
+                </div>
+                <div class="metrics">
+                  <div class="metric"><div class="num">55%</div><div class="lbl">Open Rate (sim)</div></div>
+                  <div class="metric"><div class="num">11%</div><div class="lbl">CTR (sim)</div></div>
+                  <div class="metric"><div class="num">7%</div><div class="lbl">Conversion (sim)</div></div>
+                </div>
+                <p class="muted" style="margin-top:0.65rem;font-size:0.86rem">Notes: Story-first welcome, social proof, and a 10% coupon. Split test subject line and CTA copy.</p>
+              </article>
+
+              <!-- Project 2 -->
+              <article class="project">
+                <div class="meta">
+                  <div>
+                    <h3>Abandoned Cart — FitWear (Fictional)</h3>
+                    <p class="muted">Goal: Recover lost revenue</p>
+                  </div>
+                  <div class="muted">Personalization · 2-step</div>
+                </div>
+                <div class="screenshot">
+                  <svg viewBox="0 0 400 200" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
+                    <rect x="0" y="0" width="400" height="200" rx="8" fill="#041226" />
+                    <text x="20" y="36" fill="#9fbfe8" font-size="12">Don't forget your items — they're waiting</text>
+                    <rect x="20" y="56" width="120" height="84" rx="6" fill="#ffffff0a" />
+                    <text x="160" y="92" fill="#cfdfea" font-size="11">Hey [Name], you left the SuperRun shoes in cart...</text>
+                  </svg>
+                </div>
+                <div class="metrics">
+                  <div class="metric"><div class="num">18%</div><div class="lbl">Recovery Rate (sim)</div></div>
+                  <div class="metric"><div class="num">38%</div><div class="lbl">Open Rate (sim)</div></div>
+                  <div class="metric"><div class="num">9%</div><div class="lbl">CTR (sim)</div></div>
+                </div>
+                <p class="muted" style="margin-top:0.65rem;font-size:0.86rem">Notes: Dynamic product block, urgency, and a social proof snippet in the second email.</p>
+              </article>
+
+              <!-- Project 3 -->
+              <article class="project">
+                <div class="meta">
+                  <div>
+                    <h3>Holiday Promo — BakeJoy (Fictional)</h3>
+                    <p class="muted">Goal: Boost seasonal orders</p>
+                  </div>
+                  <div class="muted">Promo · Single send</div>
+                </div>
+                <div class="screenshot">
+                  <svg viewBox="0 0 400 200" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
+                    <rect x="0" y="0" width="400" height="200" rx="8" fill="#0b2430" />
+                    <text x="20" y="36" fill="#ffd8a8" font-size="12">Holiday Box pre-orders — limited spots</text>
+                    <rect x="20" y="56" width="360" height="96" rx="6" fill="#ffffff06" />
+                    <text x="30" y="92" fill="#ffe9c8" font-size="11">Reserve your holiday box — gift options and express delivery.</text>
+                  </svg>
+                </div>
+                <div class="metrics">
+                  <div class="metric"><div class="num">32%</div><div class="lbl">Open Rate (sim)</div></div>
+                  <div class="metric"><div class="num">6%</div><div class="lbl">CTR (sim)</div></div>
+                  <div class="metric"><div class="num">$2.5K</div><div class="lbl">Revenue (sim)</div></div>
+                </div>
+                <p class="muted" style="margin-top:0.65rem;font-size:0.86rem">Notes: Emphasized scarcity, gift messaging, and a clear CTA for pre-orders.</p>
+              </article>
+
+            </div>
+
+            <div style="margin-top:1rem;display:flex;gap:0.6rem;flex-wrap:wrap;align-items:center">
+              <a class="btn" href="mailto:dipon4164@gmail.com?subject=Portfolio%20Inquiry">Hire / Collaborate</a>
+              <div class="muted" style="font-size:0.92rem">Want this as a downloadable case study? I can add a PDF for each project.</div>
+            </div>
+
+          </section>
+
+          <section class="section">
+            <h2>Automation Workflow Example</h2>
+            <div class="workflow">
+              <!-- simple visual workflow -->
+              <svg viewBox="0 0 800 160" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid meet">
+                <defs>
+                  <marker id="arrow" markerWidth="10" markerHeight="10" refX="8" refY="5" orient="auto">
+                    <path d="M0 0 L10 5 L0 10 z" fill="#8fbde8" />
+                  </marker>
+                </defs>
+                <rect x="12" y="18" width="140" height="54" rx="10" fill="#072338" stroke="#ffffff1a" />
+                <text x="30" y="48" font-size="12" fill="#cfe7ff">Trigger: New Subscriber</text>
+
+                <line x1="164" y1="45" x2="244" y2="45" stroke="#8fbde8" stroke-width="2" marker-end="url(#arrow)" />
+
+                <rect x="244" y="18" width="160" height="54" rx="10" fill="#072338" stroke="#ffffff1a" />
+                <text x="264" y="48" font-size="12" fill="#cfe7ff">Email 1 — Welcome + Offer</text>
+
+                <line x1="404" y1="45" x2="484" y2="45" stroke="#8fbde8" stroke-width="2" marker-end="url(#arrow)" />
+
+                <rect x="484" y="18" width="160" height="54" rx="10" fill="#072338" stroke="#ffffff1a" />
+                <text x="500" y="48" font-size="12" fill="#cfe7ff">Email 2 — Social Proof</text>
+
+                <line x1="644" y1="45" x2="724" y2="45" stroke="#8fbde8" stroke-width="2" marker-end="url(#arrow)" />
+
+                <rect x="724" y="18" width="60" height="54" rx="10" fill="#072338" stroke="#ffffff1a" />
+                <text x="734" y="48" font-size="10" fill="#cfe7ff">Goal</text>
+                <text x="734" y="62" font-size="10" fill="#9aa4b2">First purchase</text>
+              </svg>
+            </div>
+          </section>
+
+          <section class="section">
+            <h2>Notes & How I work</h2>
+            <p class="muted">I design mobile-first templates, write persuasive short-form copy, and set up segmentation & basic analytics. For each campaign I recommend an A/B test on subject line and CTA, plus a 2-week measurement window.</p>
+          </section>
+
+        </div>
+
+        <footer>
+          <div class="muted">This portfolio shows practice projects. Replace mock images with real campaign screenshots and update metrics when you have live results.</div>
+        </footer>
+
+      </main>
+
+      <aside class="side">
+        <div class="card contact-card">
+          <div style="display:flex;justify-content:space-between;align-items:center">
+            <div>
+              <div style="font-weight:700">Contact</div>
+              <div class="muted">dipon4164@gmail.com · Dhaka, Bangladesh</div>
+            </div>
+            <a class="btn" href="mailto:dipon4164@gmail.com">Get in touch</a>
+          </div>
+
+          <div style="margin-top:0.6rem">
+            <div style="font-size:0.9rem;font-weight:700">Quick Metrics (sample)</div>
+            <div style="display:flex;gap:0.5rem;margin-top:0.6rem">
+              <div style="flex:1;background:rgba(255,255,255,0.03);padding:0.5rem;border-radius:10px;text-align:center">
+                <div style="font-weight:700">3</div>
+                <div class="muted" style="font-size:0.75rem">Mock Case Studies</div>
+              </div>
+              <div style="flex:1;background:rgba(255,255,255,0.03);padding:0.5rem;border-radius:10px;text-align:center">
+                <div style="font-weight:700">12+</div>
+                <div class="muted" style="font-size:0.75rem">Templates</div>
+              </div>
+            </div>
+          </div>
+
+          <div class="section" style="margin-top:1rem">
+            <h2 style="margin-bottom:0.4rem">Send me a message</h2>
+            <a class="btn" href="mailto:dipon4164@gmail.com" style="display:block;text-align:center">Email Me Directly</a>
+
+  <div class="section" style="margin-top:1rem">
+            
+            <a class="btn" href="https://wa.me/8801927569353" style="display:block;text-align:center;margin-bottom:0.5rem">Message Me on WhatsApp</a>
+            <p class="muted" style="margin-top:0.5rem;text-align:center;font-size:0.9rem">Or fill the form below to prepare your message</p>
+            
+            <form id="contact">
+              <input id="name" placeholder="Your name" required />
+              <input id="email" placeholder="Email (optional)" type="email" />
+              <textarea id="message" placeholder="Your message" required></textarea>
+              <button type="button" class="btn" onclick="sendToWhatsApp()">Prepare to Message</button>
+            </form>
+          </div>
+        </div>
+
+        <div class="card" style="margin-top:1rem;padding:0.9rem">
+          <div style="font-weight:700">Download</div>
+          <p class="muted" style="margin:0.5rem 0 0.75rem 0">You can export each case as a PDF or add real screenshots. Want me to create ready-to-upload screenshots for the mock campaigns?</p>
+          <a class="btn" href="your-portfolio.pdf" download="Dipon-Email-Marketing-Portfolio.pdf" style="display:block;text-align:center">Download Portfolio PDF</a>
+          <p class="muted" style="margin-top:0.5rem;font-size:0.85rem;text-align:center">PDF file (approx. 2.5MB)</p>
+        </div>
+      </aside>
+
+    </div>
+  </div>
+
+  <script>
+    function handleForm(e){
+      e.preventDefault();
+      // There's intentionally no backend on this demo. Show a friendly message.
+      document.getElementById('sent').style.display = 'block';
+      // copy a small message to clipboard to make it easier to contact
+      const name = document.getElementById('name').value || '—';
+      const email = document.getElementById('email').value || '—';
+      const msg = document.getElementById('message').value || '—';
+      const text = `Contact request from portfolio:\nName: ${name}\nEmail: ${email}\nMessage: ${msg}`;
+      navigator.clipboard?.writeText(text).catch(()=>{});
+    }
+    function sendToWhatsApp() {
+      const name = document.getElementById('name').value || 'No name provided';
+      const email = document.getElementById('email').value || 'No email provided';
+      const message = document.getElementById('message').value || 'No message provided';
+      
+      const whatsappMessage = `New message from portfolio:%0A%0AName: ${encodeURIComponent(name)}%0AEmail: ${encodeURIComponent(email)}%0AMessage: ${encodeURIComponent(message)}`;
+      
+      window.open(`https://wa.me/8801927569353?text=${whatsappMessage}`, '_blank');
+    }
+  </script>
+</body>
+</html>
